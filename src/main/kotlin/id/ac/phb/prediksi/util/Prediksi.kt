@@ -36,13 +36,14 @@ class Prediksi {
         if(i % 2 == 0) {
             var j = i - 1
             j -= (j*2)
+            var n = 0
             for(n in 1..i) {
                 result.add(j)
                 j+=2
             }
         } else {
             var j = Integer(i / 2) - i + 1
-            var n = 0;
+            var n = 0
             for(n in 1..i) {
                 result.add(j)
                 j++
