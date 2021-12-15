@@ -18,14 +18,44 @@ class Prediksi {
         val data = resumeRepo.findByTglBetween(awal, akhir)
 
         val a = calculateA(data)
+        val b = calculateB(data)
+        val x = getFutureX(data.size)
 
+        return a + (b * x)
+    }
 
-        return 1.75
+    fun getFutureX(i: Int): Int {
+        var lx = generateX(i)[i-1]
+        if(i % 2 == 0) { // jumlah data genap
+            lx += 2
+        } else { // jumlah data ganjil
+            lx++
+        }
+        return lx
     }
 
     fun calculateB(data: List<Resume>): Double {
+        val x = generateX(data.size)
+        val x2 = calculateX2(x)
+        val xy = calculateXY(x, data)
+        return xy / x2
+    }
 
-        return 0.0
+    fun calculateXY(x: List<Int>, data: List<Resume>): Double {
+        var i = 0
+        var result = 0.0
+        x.forEach {
+            result += (it * data[i++].nilai)
+        }
+        return result
+    }
+
+    fun calculateX2(data: List<Int>): Double {
+        var result = 0.0
+        data.forEach {
+            result += (it*it)
+        }
+        return result
     }
 
     /**
@@ -42,7 +72,7 @@ class Prediksi {
                 j+=2
             }
         } else {
-            var j = Integer(i / 2) - i + 1
+            var j = (i / 2).toInt() - i + 1
             var n = 0
             for(n in 1..i) {
                 result.add(j)
