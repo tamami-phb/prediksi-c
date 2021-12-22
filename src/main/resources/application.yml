@@ -1,6 +1,6 @@
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/dwh
-    username: postgres
-    password: secret
+    url: jdbc:postgresql://ec2-52-204-29-205.compute-1.amazonaws.com:5432/dbt6oqdmr18tbu
+    username: buzdmhnmxknkxh
+    password: 5a93d067113d829cfa14007905ba3a10a9bef085f3db052533f7142bf5721fbc
